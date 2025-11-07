@@ -1,0 +1,23 @@
+{% sw_extends '@Storefront/storefront/component/buy-widget/configurator.html.twig' %}
+{% block buy_widget_configurator %}
+    {% set variants = page.getExtension('af_variant_selection')[0].getElements() %}
+    <div class="af-configurator">
+        {% for variant in variants %}
+            <a href="/detail/{{variant.id}}">
+                <div class="configurator-variant{% if variant.id == page.product.id %} variant-active{% endif %}">
+                    {% for group in configuratorSettings %}
+                        <div class="variant-group">
+                            <b>{{group.name}}</b><br/>
+                            {% for option in group.options %}
+                                {% if option.id in variant.optionIds %}
+                                    {{option.name}}
+                                {% endif %}
+                            {% endfor %}
+
+                        </div>
+                    {% endfor %}
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+.af-configurator a{
+    text-decoration:none;
+}
+.af-configurator{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+}
+.configurator-variant{
+    min-width:120px;
+    margin: 1rem;
+    margin-left:0;
+    background:#39b23d;
+    padding:1rem;
+    color:white;
+    border-radius:10px;
+}
+.configurator-variant.variant-active{
+    background: #2d8c30;
+}
+.variant-group{
+    margin-bottom:1rem;
+}
