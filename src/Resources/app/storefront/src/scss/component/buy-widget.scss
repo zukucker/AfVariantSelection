@@ -1,3 +1,7 @@
+$sass-plugin-variant-bg-color: #39b23d !default;
+$sass-plugin-variant-active-bg-color: #2d8c30 !default;
+$sass-plugin-variant-text-color: #ffffff !default;
+
 .af-configurator a{
     text-decoration:none;
 }
@@ -12,13 +16,13 @@
     min-width:120px;
     margin: 1rem;
     margin-left:0;
-    background:#39b23d;
+    background: $sass-plugin-variant-bg-color;
     padding:1rem;
-    color:white;
+    color:$sass-plugin-variant-text-color;
     border-radius:10px;
 }
 .configurator-variant.variant-active{
-    background: #2d8c30;
+    background: $sass-plugin-variant-active-bg-color;
 }
 .variant-group{
     margin-bottom:1rem;

@@ -6,11 +6,23 @@
     <card>
         <title>Minimal configuration</title>
 
-        <input-field type="text">
-            <name>textField</name>
-            <label>Test field with default value</label>
-            <defaultValue>test</defaultValue>
+        <input-field type="colorpicker">
+            <name>configuratorBackground</name>
+            <label>Hintergrund der Varianten</label>
+            <css>sass-plugin-variant-bg-color</css>
+            <defaultValue>#39b23d</defaultValue>
+        </input-field>
+        <input-field type="colorpicker">
+            <name>configuratorActiveBackground</name>
+            <label>Hintergrund der aktiven Variante</label>
+            <css>sass-plugin-variant-active-bg-color</css>
+            <defaultValue>#2d8c30</defaultValue>
+        </input-field>
+        <input-field type="colorpicker">
+            <name>configuratorTextColor</name>
+            <label>Schriftfarbe der Variante</label>
+            <css>sass-plugin-variant-text-color</css>
+            <defaultValue>#ffffff</defaultValue>
         </input-field>
     </card>
-
 </config>
