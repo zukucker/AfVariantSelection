@@ -1,9 +1,12 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace AfVariantSelection\Subscriber;
 
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Sorting\FieldSorting;
 use Shopware\Core\Framework\Struct\ArrayStruct;
 use Shopware\Core\System\SalesChannel\Entity\SalesChannelRepository;
 use Shopware\Storefront\Page\Product\ProductPageLoadedEvent;
@@ -28,15 +31,18 @@ class ProductLoadedSubscriber implements EventSubscriberInterface
         $product = $page->getProduct();
         $productId = $product->getId();
         $parentId = "";
-        if($product->getParentId()){
+        if ($product->getParentId()) {
             $parentId = $product->getParentId();
-        }else{
+        } else {
             // early return
             return;
         }
         $productId = $product->getId();
         $criteria = new Criteria();
         $criteria->addAssociation('children');
+        $criteria->getAssociation('children')->addSorting(
+            new FieldSorting('price', FieldSorting::ASCENDING)
+        );
         $criteria->addFilter(new EqualsFilter('id', $parentId));
 
         $result = $this->productRepository->search($criteria, $event->getSalesChannelContext())->first();

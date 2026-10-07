@@ -1,25 +1,41 @@
 {% sw_extends '@Storefront/storefront/component/buy-widget/configurator.html.twig' %}
+
 {% block buy_widget_configurator %}
     {% block af_configurator %}
         {% set variants = page.getExtension('af_variant_selection')[0].getElements() %}
         {% set variantsConfig = config('AfVariantSelection.config') %}
         <div class="af-configurator">
             {% for variant in variants %}
-                <a title="{{variant.translated.name}} - {{variant.productNumber}}" href="/detail/{{variant.id}}">
-                    <div class="configurator-variant {% if variant.id == page.product.id %} variant-active{% endif %}">
-                        {% for group in configuratorSettings %}
-                            <div class="variant-group">
-                                <b>{{group.name}}</b><br/>
-                                {% for option in group.options %}
-                                    {% if option.id in variant.optionIds %}
-                                        {{option.name}}
-                                    {% endif %}
-                                {% endfor %}
+                {% if variant.active %}
+                    <a title="{{variant.translated.name}} - {{variant.productNumber}}" href="/detail/{{variant.id}}">
+                        <div class="configurator-variant {% if variant.id == page.product.id %} variant-active{% endif %}">
+                            {% for group in configuratorSettings %}
+                                <div class="variant-group">
+                                    {# <b>{{group.name}}</b><br/> #}
+                                    {% for option in group.options %}
+                                        {% if option.id in variant.optionIds %}
+                                            <div class="price-container">
+                                                <div>{{option.name}}</div>
 
-                            </div>
-                        {% endfor %}
-                    </div>
-                </a>
+                                                {% if variant.calculatedPrices|length <= 1 %}
+                                                    {% if variant.calculatedPrice.referencePrice is not null %}
+                                                        <span class="unit-price">({{ variant.calculatedPrice.referencePrice.price|currency }} / {{ variant.calculatedPrice.referencePrice.referenceUnit }} {{ variant.measurements.units.weight.unit }})</span>
+                                                    {% endif %}
+                                                {% endif %}
+                                            </div>
+
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            {% endfor %}
+                            {% if not variant.available %}
+                                Aktuell leider nicht verfügbar
+                            {% else %}
+                                <b>{{variant.calculatedPrice.totalPrice|currency}}</b>
+                            {%endif %}
+                        </div>
+                    </a>
+                {% endif %}
             {% endfor %}
         </div>
     {% endblock %}

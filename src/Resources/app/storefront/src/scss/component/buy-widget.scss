@@ -1,29 +1,47 @@
-$sass-plugin-variant-bg-color: #39b23d !default;
-$sass-plugin-variant-active-bg-color: #2d8c30 !default;
-$sass-plugin-variant-text-color: #ffffff !default;
-
-.af-configurator a{
-    text-decoration:none;
+$sass-plugin-variant-bg-color: #fff8f5 !default;
+$sass-plugin-variant-active-bg-color: #e8f0dc !default;
+$sass-plugin-variant-text-color: #000000 !default;
+$sass-plugin-variant-border-color: #3e5813 !default;
+$sass-plugin-variant-hover-color: #f6ece5 !default;
+$sass-plugin-variant-unit-price-color: #c1c1c1 !default;
+.af-configurator a {
+  text-decoration: none;
 }
-.af-configurator{
-    display:flex;
-    flex-direction:row;
-    align-items:center;
-    flex-wrap: wrap;
-    margin: 1rem 0;
+.af-configurator {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 1rem 0;
 }
-.configurator-variant{
-    min-width:120px;
-    margin: 1rem;
-    margin-left:0;
-    background: $sass-plugin-variant-bg-color;
-    padding:1rem;
-    color:$sass-plugin-variant-text-color;
-    border-radius:10px;
+.af-configurator a {
+  width: 50%;
 }
-.configurator-variant.variant-active{
-    background: $sass-plugin-variant-active-bg-color;
+.configurator-variant {
+  min-width: 200px;
+  margin: 1rem;
+  margin-left: 0;
+  background: $sass-plugin-variant-bg-color;
+  padding: 1rem;
+  color: $sass-plugin-variant-text-color;
+  border-radius: 10px;
 }
-.variant-group{
-    margin-bottom:1rem;
+.configurator-variant:hover {
+  background: $sass-plugin-variant-hover-color;
+}
+.configurator-variant.variant-active {
+  background: $sass-plugin-variant-active-bg-color;
+  border: 1px solid $sass-plugin-variant-border-color;
+}
+.variant-group {
+  margin-bottom: 1rem;
+  .price-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    .unit-price {
+      color: $sass-plugin-variant-unit-price-color;
+    }
+  }
 }
